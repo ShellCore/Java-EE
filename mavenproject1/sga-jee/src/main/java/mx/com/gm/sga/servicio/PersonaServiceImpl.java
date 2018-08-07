@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import mx.com.gm.sga.domain.Persona;
 
 @Stateless
-public class PersonaServiceImpl implements PersonaServiceRemote {
+public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService {
 
     @Override
     public List<Persona> listaPersonas() {
@@ -41,6 +41,5 @@ public class PersonaServiceImpl implements PersonaServiceRemote {
     @Override
     public void eliminarPersona(Persona persona) {
         // TODO Falta implementación eliminarPersona(Persona persona)
-    }
-    
+    }    
 }

@@ -9,3 +9,4 @@ En éste repositorio se van a almacenar todos los ejercicios que se generan dent
 1. Hola Mundo desde Java EE
 2. Hola Mundo con EJB
 3. Sistema SGA y EJB de sesión remoto
+4. Sistema SGA y EJB de sesión local
