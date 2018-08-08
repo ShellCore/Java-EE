@@ -12,3 +12,4 @@ En éste repositorio se van a almacenar todos los ejercicios que se generan dent
 4. Sistema SGA y EJB de sesión local
 5. Hola Mundo con JPA
 6. Sistema SGA con JPA
+7. Consola JPQL
