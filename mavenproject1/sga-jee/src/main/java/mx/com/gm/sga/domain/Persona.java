@@ -1,24 +1,52 @@
 package mx.com.gm.sga.domain;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
+@Entity
+@NamedQueries({
+    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p ORDER BY p.idPersona") 
+})
+@Table(name = "persona")
 public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private int idPersona;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer idPersona;
+    
+    @Column(length = 45, nullable = false)
     private String nombre;
+    
+    @Column(name = "paterno", length = 45, nullable = false)
     private String apePaterno;
+    
+    @Column(name = "materno", length = 45, nullable = false)
     private String apeMaterno;
+    
+    @Column(length = 45, nullable = false)
     private String email;
+    
+    @Column(length = 45)
     private String telefono;
 
     public Persona() {
     }
 
-    public Persona(int idPersona, String nombre, String apePaterno, String apeMaterno, String email, String telefono) {
-        super();
+    public Persona(Integer idPersona) {
         this.idPersona = idPersona;
+    }
+
+    public Persona(String nombre, String apePaterno, String apeMaterno, String email, String telefono) {
         this.nombre = nombre;
         this.apePaterno = apePaterno;
         this.apeMaterno = apeMaterno;
@@ -26,11 +54,11 @@ public class Persona implements Serializable {
         this.telefono = telefono;
     }
 
-    public int getIdPersona() {
+    public Integer getIdPersona() {
         return idPersona;
     }
 
-    public void setIdPersona(int idPersona) {
+    public void setIdPersona(Integer idPersona) {
         this.idPersona = idPersona;
     }
 

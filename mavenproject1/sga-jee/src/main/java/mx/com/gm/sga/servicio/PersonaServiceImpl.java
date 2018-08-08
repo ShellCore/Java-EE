@@ -2,44 +2,44 @@ package mx.com.gm.sga.servicio;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import mx.com.gm.sga.domain.Persona;
+import mx.com.gm.sga.eis.PersonaDao;
 
 @Stateless
 public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService {
+    
+    @EJB
+    private PersonaDao personaDao;
 
     @Override
     public List<Persona> listaPersonas() {
-        List<Persona> list = new ArrayList<>();
-        list.add(new Persona(1, "Juan", "Perez", "Suarez", "jperez@mail.com", "51234567"));
-        list.add(new Persona(2, "Martha", "Suarez", "Jimenez", "msuarez@mail.com", "98765432"));
-        return list;
+        return personaDao.findAllPersonas();
     }
 
     @Override
     public Persona encontrarPersonaPorId(Persona persona) {
-        // TODO Falta implementación encontrarPersonaPorId(Persona persona)
-        return null;
+        return personaDao.findPersonaById(persona);
     }
 
     @Override
     public Persona encontrarPersonaPorEmail(Persona persona) {
-        // TODO Falta implementación encontrarPersonaPorEmail(Persona persona)
-        return null;
+        return personaDao.findPersonaByEmail(persona);
     }
 
     @Override
     public void registrarPersona(Persona persona) {
-        // TODO Falta implemtación registrarPersona(Persona persona)
+        personaDao.insertPersona(persona);
     }
 
     @Override
     public void modificarPersona(Persona persona) {
-        // TODO Falta implementación modificarPersona(Persona persona)
+        personaDao.updatePersona(persona);
     }
 
     @Override
     public void eliminarPersona(Persona persona) {
-        // TODO Falta implementación eliminarPersona(Persona persona)
+        personaDao.deletePersona(persona);
     }    
 }
