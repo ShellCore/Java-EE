@@ -14,3 +14,4 @@ En éste repositorio se van a almacenar todos los ejercicios que se generan dent
 6. Sistema SGA con JPA
 7. Consola JPQL
 8. Ingeniería inversa con JPA
+9. Laboratorio: SGA Usuarios
