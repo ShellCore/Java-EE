@@ -13,3 +13,4 @@ En éste repositorio se van a almacenar todos los ejercicios que se generan dent
 5. Hola Mundo con JPA
 6. Sistema SGA con JPA
 7. Consola JPQL
+8. Ingeniería inversa con JPA

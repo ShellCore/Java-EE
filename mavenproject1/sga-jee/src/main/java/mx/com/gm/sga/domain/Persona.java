@@ -1,6 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package mx.com.gm.sga.domain;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,58 +15,81 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+/**
+ *
+ * @author shell
+ */
 @Entity
-@NamedQueries({
-    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p ORDER BY p.idPersona") 
-})
 @Table(name = "persona")
+@NamedQueries({
+    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p")
+    , @NamedQuery(name = "Persona.findById", query = "SELECT p FROM Persona p WHERE p.id = :id")
+    , @NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre")
+    , @NamedQuery(name = "Persona.findByPaterno", query = "SELECT p FROM Persona p WHERE p.paterno = :paterno")
+    , @NamedQuery(name = "Persona.findByMaterno", query = "SELECT p FROM Persona p WHERE p.materno = :materno")
+    , @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email")
+    , @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono")})
 public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "id")
-    private Integer idPersona;
-    
-    @Column(length = 45, nullable = false)
+    private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "nombre")
     private String nombre;
-    
-    @Column(name = "paterno", length = 45, nullable = false)
-    private String apePaterno;
-    
-    @Column(name = "materno", length = 45, nullable = false)
-    private String apeMaterno;
-    
-    @Column(length = 45, nullable = false)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "paterno")
+    private String paterno;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "materno")
+    private String materno;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "email")
     private String email;
-    
-    @Column(length = 45)
+    @Size(max = 45)
+    @Column(name = "telefono")
     private String telefono;
+    @OneToMany(mappedBy = "idPersona")
+    private List<Usuario> usuarioList;
 
     public Persona() {
     }
 
-    public Persona(Integer idPersona) {
-        this.idPersona = idPersona;
+    public Persona(Integer id) {
+        this.id = id;
     }
 
-    public Persona(String nombre, String apePaterno, String apeMaterno, String email, String telefono) {
+    public Persona(Integer id, String nombre, String paterno, String materno, String email) {
+        this.id = id;
         this.nombre = nombre;
-        this.apePaterno = apePaterno;
-        this.apeMaterno = apeMaterno;
+        this.paterno = paterno;
+        this.materno = materno;
         this.email = email;
-        this.telefono = telefono;
     }
 
-    public Integer getIdPersona() {
-        return idPersona;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdPersona(Integer idPersona) {
-        this.idPersona = idPersona;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -70,20 +100,20 @@ public class Persona implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getApePaterno() {
-        return apePaterno;
+    public String getPaterno() {
+        return paterno;
     }
 
-    public void setApePaterno(String apePaterno) {
-        this.apePaterno = apePaterno;
+    public void setPaterno(String paterno) {
+        this.paterno = paterno;
     }
 
-    public String getApeMaterno() {
-        return apeMaterno;
+    public String getMaterno() {
+        return materno;
     }
 
-    public void setApeMaterno(String apeMaterno) {
-        this.apeMaterno = apeMaterno;
+    public void setMaterno(String materno) {
+        this.materno = materno;
     }
 
     public String getEmail() {
@@ -102,15 +132,37 @@ public class Persona implements Serializable {
         this.telefono = telefono;
     }
 
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Persona)) {
+            return false;
+        }
+        Persona other = (Persona) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
-        return "Persona {"
-                + "Id: " + idPersona
-                + ", Nombre: " + nombre
-                + ", Apellido Paterno: " + apePaterno
-                + ", Apellido Materno: " + apeMaterno
-                + ", Correo electrónico: " + email
-                + ", Teléfono: " + telefono
-                + "}";
+        return "mx.com.gm.sga.domain.Persona[ id=" + id + " ]";
     }
+    
 }
