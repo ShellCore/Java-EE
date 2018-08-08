@@ -10,12 +10,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "persona")
+
 public class Persona implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer idPersona;
+
     
     @Column(nullable = false, length = 45)
     private String nombre;
