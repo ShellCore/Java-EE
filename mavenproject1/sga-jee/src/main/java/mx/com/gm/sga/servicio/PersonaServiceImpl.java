@@ -1,13 +1,18 @@
 package mx.com.gm.sga.servicio;
 
 import java.util.List;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import mx.com.gm.sga.domain.Persona;
 import mx.com.gm.sga.eis.PersonaDao;
 
 @Stateless
 public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService {
+    
+    @Resource
+    private SessionContext context;
     
     @EJB
     private PersonaDao personaDao;
@@ -34,7 +39,12 @@ public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService 
 
     @Override
     public void modificarPersona(Persona persona) {
-        personaDao.updatePersona(persona);
+        try {
+            personaDao.updatePersona(persona);
+        } catch (Throwable t) {
+            context.setRollbackOnly();
+            t.printStackTrace(System.out);
+        }
     }
 
     @Override
