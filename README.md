@@ -16,3 +16,4 @@ En éste repositorio se van a almacenar todos los ejercicios que se generan dent
 8. Ingeniería inversa con JPA
 9. Laboratorio: SGA Usuarios
 10. Persistir Objeto en JPA
+11. Recuperar Objeto en JPA
