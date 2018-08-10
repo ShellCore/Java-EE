@@ -76,12 +76,12 @@ public class Persona implements Serializable {
         this.id = id;
     }
 
-    public Persona(Integer id, String nombre, String paterno, String materno, String email) {
-        this.id = id;
+    public Persona(String nombre, String paterno, String materno, String email, String telefono) {
         this.nombre = nombre;
         this.paterno = paterno;
         this.materno = materno;
         this.email = email;
+        this.telefono = telefono;
     }
 
     public Integer getId() {
@@ -162,7 +162,14 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "mx.com.gm.sga.domain.Persona[ id=" + id + " ]";
+        return "Persona {"
+                + "Id: " + id
+                + ", Nombre: " + nombre
+                + ", Apellido Paterno: " + paterno
+                + ", Apellido Materno: " + materno
+                + ", Email: " + email
+                + ", Telefono: " + telefono
+                + "}";
     }
     
 }
