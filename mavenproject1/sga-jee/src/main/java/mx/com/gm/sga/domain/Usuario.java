@@ -7,8 +7,10 @@ package mx.com.gm.sga.domain;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,7 +52,7 @@ public class Usuario implements Serializable {
     @Column(name = "password")
     private String password;
     @JoinColumn(name = "id_persona", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Persona idPersona;
 
     public Usuario() {
@@ -60,10 +62,10 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public Usuario(Integer id, String username, String password) {
-        this.id = id;
+    public Usuario(String username, String password, Persona idPersona) {
         this.username = username;
         this.password = password;
+        this.idPersona = idPersona;
     }
 
     public Integer getId() {

@@ -19,3 +19,4 @@ En éste repositorio se van a almacenar todos los ejercicios que se generan dent
 11. Recuperar Objeto en JPA
 12. Actualizar Objeto en JPA
 13. Eliminar Objeto en JPA
+14. Asociaciones en JPA

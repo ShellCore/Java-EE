@@ -8,8 +8,10 @@ package mx.com.gm.sga.domain;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -66,7 +68,7 @@ public class Persona implements Serializable {
     @Size(max = 45)
     @Column(name = "telefono")
     private String telefono;
-    @OneToMany(mappedBy = "idPersona")
+    @OneToMany(mappedBy = "idPersona", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Usuario> usuarioList;
 
     public Persona() {
