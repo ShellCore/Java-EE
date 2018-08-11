@@ -6,6 +6,8 @@
     <body>
         <h1>Listado de Personas</h1>
         
+        <a href="agregarPersona.jsp">Agregar Persona</a>
+        <br><br>
         <table border="1">
             <tr>
                 <th>Nombre</th>
@@ -15,7 +17,7 @@
             
             <c:forEach var="persona" items="${personas}">
                 <tr>
-                    <td>${persona.nombre}</td>
+                    <td><a href="ServletControlador?accion=editar&id=${persona.id}">${persona.nombre}</a></td>
                     <td>${persona.paterno}</td>
                     <td>${persona.email}</td>
                 </tr>
