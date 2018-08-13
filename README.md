@@ -28,3 +28,4 @@ En éste repositorio se van a almacenar todos los ejercicios que se generan dent
 20. Aplicación web con JSF + AJAX + PRIMEFACES + EJB + JPA
 21. Laboratorio: Aplicación web con JSF + AJAX + PRIMEFACES + EJB + JPA
 22. Hola Mundo Web Services con JAX-WS en Java EE
+23. Cliente Hola Mundo Web Services con JAX-WS en Java EE
