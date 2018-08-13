@@ -25,3 +25,4 @@ En éste repositorio se van a almacenar todos los ejercicios que se generan dent
 17. Manejo de transacciones con Java EE
 18. Servlets y JSPs con Java EE
 19. Laboratorio: Servlets y JSPs con Java EE
+20. Aplicación web con JSF + AJAX + PRIMEFACES + EJB + JPA
