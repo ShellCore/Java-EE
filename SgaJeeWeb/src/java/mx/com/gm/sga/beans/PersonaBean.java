@@ -2,19 +2,21 @@ package mx.com.gm.sga.beans;
 
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import org.primefaces.event.RowEditEvent;
 import mx.com.gm.sga.domain.Persona;
 import mx.com.gm.sga.servicio.PersonaService;
 
+@ManagedBean(name = "personaBean")
 @RequestScoped
-@Named
 public class PersonaBean {
 
-    @Inject
+    @EJB
     private PersonaService personaService;
+
+    private Persona personaSeleccionada;
 
     List<Persona> personas;
 
@@ -23,7 +25,9 @@ public class PersonaBean {
 
     @PostConstruct
     public void inicializar() {
+        //Iniciamos las variables
         personas = personaService.listaPersonas();
+        personaSeleccionada = new Persona();
     }
 
     public void editListener(RowEditEvent event) {
@@ -38,4 +42,27 @@ public class PersonaBean {
     public void setPersonas(List<Persona> personas) {
         this.personas = personas;
     }
+
+    public Persona getPersonaSeleccionada() {
+        return personaSeleccionada;
+    }
+
+    public void setPersonaSeleccionada(Persona personaSeleccionada) {
+        this.personaSeleccionada = personaSeleccionada;
+    }
+    
+    public void reiniciarPersonaSeleccionada(){
+        this.personaSeleccionada = new Persona();
+    }
+
+    public void agregarPersona() {
+        personaService.registrarPersona(this.personaSeleccionada);
+        this.personaSeleccionada = null;
+    }
+
+    public void eliminarPersona() {
+        personaService.eliminarPersona(this.personaSeleccionada);
+        this.personaSeleccionada = null;
+    }
+
 }
