@@ -33,3 +33,4 @@ En éste repositorio se van a almacenar todos los ejercicios que se generan dent
 25. Cliente SGA Web Service con JAX-WS con Java EE
 26. Laboratorio: Cliente SGA Web Service con JAX-WS con Java EE
 27. REST Web Services con Java EE
+28. Cliente REST Web Services con Java EE
