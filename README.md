@@ -37,3 +37,4 @@ En éste repositorio se van a almacenar todos los ejercicios que se generan dent
 29. SGA con Seguridad en Java EE
 30. Cliente Web - SGA con Seguridad en Java EE
 31. Cliente local y remoto EJB con seguridad en Java EE
+32. Cliente JAX-RS con seguridad en Java EE
